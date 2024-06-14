@@ -8,11 +8,11 @@ import PreloadImages from "./components/commons/PreloadImages";
 
 const router = createBrowserRouter([
     {
-        path: '/',
+        path: '/verify',
         element: <Home/>
     },
     {
-        path: '/offline',
+        path: 'verify/offline',
         element: <Offline/>
     }
 ])
