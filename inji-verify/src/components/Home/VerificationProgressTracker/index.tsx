@@ -7,8 +7,8 @@ import {VerificationProgressTrackerContainer} from "./styles";
 function VerificationProgressTracker() {
     return (
         <VerificationProgressTrackerContainer>
-            <Navbar/>
-            <StepperContentHeader/>
+            {/* <Navbar/> */}
+            {/* <StepperContentHeader/> */}
             <InjiStepper/>
         </VerificationProgressTrackerContainer>
     );

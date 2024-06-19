@@ -1,21 +1,42 @@
 import React from 'react';
-import {Step, StepLabel, Stepper} from "@mui/material";
-import {VerificationStep} from "../../../../types/data-types";
-import {StepLabelContent} from "./styles";
+import { Step, StepLabel, Stepper, Typography } from "@mui/material";
+import { VerificationStep } from "../../../../types/data-types";
+import { StepLabelContent, StepContentDescription, StepContentContainer } from "./styles";
 
-function MobileStepper({steps, activeStep}: {steps: VerificationStep[], activeStep: number}) {
+interface MobileStepperProps {
+    steps: VerificationStep[];
+    activeStep: number;
+}
+
+const MobileStepper: React.FC<MobileStepperProps> = ({ steps, activeStep }) => {
     return (
-        <Stepper style={{maxHeight: '350px'}} activeStep={activeStep} orientation="horizontal" alternativeLabel>
-            {steps.map((step, index) => (
-                <Step key={step.label}>
-                    <StepLabel>
-                        <StepLabelContent>
-                            {step.label}
-                        </StepLabelContent>
-                    </StepLabel>
-                </Step>
-            ))}
-        </Stepper>
+        <div style={{ overflowX: 'auto', marginTop: '16px', marginBottom: '16px' }}>
+            <Stepper activeStep={activeStep} orientation="horizontal" alternativeLabel>
+                {steps.map((step, index) => (
+                    <Step key={step.label}>
+                        <StepLabel>
+                            <StepLabelContent>
+                                {step.label}
+                            </StepLabelContent>
+                        </StepLabel>
+                        {/* <StepContentContainer
+                            TransitionProps={{ appear: true, unmountOnExit: false }}
+                            hidden={false}>
+                            <StepContentDescription>
+                                {Array.isArray(step.description)
+                                    ? step.description.map((desc, idx) => (
+                                        <Typography key={idx} variant="body1" style={{ marginBottom: idx === step.description.length - 1 ? '0' : '8px' }}>
+                                            {desc}
+                                        </Typography>
+                                    ))
+                                    : <Typography variant="body1">{step.description}</Typography>
+                                }
+                            </StepContentDescription>
+                        </StepContentContainer> */}
+                    </Step>
+                ))}
+            </Stepper>
+        </div>
     );
 }
 

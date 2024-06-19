@@ -1,11 +1,11 @@
-import {Divider} from "@mui/material";
+import { Divider } from "@mui/material";
 import React from "react";
-import {CopyrightsContainer, CopyrightsContent} from "./styles";
+import { CopyrightsContainer, CopyrightsContent } from "./styles";
 
 function Copyrights(props: any) {
     return (
         <CopyrightsContainer>
-            <Divider style={{width: '40vw'}}/>
+            <Divider  />
             <CopyrightsContent>
                 2024 © MOSIP - All rights reserved.
             </CopyrightsContent>

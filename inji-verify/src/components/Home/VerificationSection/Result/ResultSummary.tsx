@@ -1,53 +1,41 @@
 import React from 'react';
-import {Grid, Typography} from "@mui/material";
-import {ReactComponent as VerificationSuccessIcon} from "../../../../assets/verification-success-icon.svg";
-import {ReactComponent as VerificationFailedIcon} from "../../../../assets/verification-failed-icon.svg";
-import {SetActiveStepFunction} from "../../../../types/function-types";
+import { Grid, Typography } from "@mui/material";
+import { ReactComponent as VerificationSuccessIcon } from "../../../../assets/verification-success-icon.svg";
+import { ReactComponent as VerificationFailedIcon } from "../../../../assets/verification-failed-icon.svg";
 
-const ResultSummary = ({success}: {
-    success: boolean
-}) => {
+const ResultSummary = ({ success }: { success: boolean }) => {
     return (
-        <Grid container>
-            <Grid item xs={12}>
-                <Grid container style={{
-                    display: "grid",
-                    placeItems: "center",
-                    placeContent: "center",
-                    paddingTop: "30px"
-                }}>
-                    <Grid item xs={12} style={{
-                        borderRadius: "50%",
-                        backgroundColor: "white",
-                        height: "68px",
-                        width: "68px",
-                        display: "grid",
-                        placeContent: "center",
-                        color: success ? "#4B9D1F": "#CB4242",
-                        fontSize: "24px",
-                        margin: "7px auto"
+        <Grid container justifyContent="center">
+            <Grid container alignItems="center" spacing={2}>
+                <Grid item xs={12}>
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        width: '100px',  // Adjusted width
+                        height: '100px', // Adjusted height
+                        borderRadius: '50%',
+                        backgroundColor: 'white',
+                        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                        color: success ? '#4B9D1F' : '#CB4242',
+                        fontSize: '48px', // Increased font size
+                        margin: '10px auto' // Center the icon horizontally and vertically
                     }}>
-                        {success ? <VerificationSuccessIcon/> : <VerificationFailedIcon/>}
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography style={{
-                            font: "normal normal bold 20px/24px Inter",
-                            margin: "7px auto"
-                        }}>
-                            Results
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography style={{font: "normal normal normal 16px/20px Inter"}}>
-                            {success
-                                ? "Congratulations, the given credential is valid!"
-                                : "Unfortunately, the given credential is invalid!"}
-                        </Typography>
-                    </Grid>
+                        {success ? <VerificationSuccessIcon /> : <VerificationFailedIcon />}
+                    </div>
                 </Grid>
-            </Grid>
-            <Grid item xs={12}>
-
+                <Grid item xs={12}>
+                    <Typography variant="h5" align="center" style={{ marginTop: '10px' }}>
+                        Results
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <Typography variant="body1" align="center">
+                        {success
+                            ? "Congratulations, the given credential is valid!"
+                            : "Unfortunately, the given credential is invalid!"}
+                    </Typography>
+                </Grid>
             </Grid>
         </Grid>
     );

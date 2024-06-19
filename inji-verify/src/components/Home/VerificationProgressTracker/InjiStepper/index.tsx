@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Step, StepContent, StepLabel, Stepper, Typography, useMediaQuery} from "@mui/material";
+import {Grid, Step, StepContent, StepLabel, Stepper, Typography, useMediaQuery} from "@mui/material";
 import DesktopStepper from "./DesktopStepper";
 import MobileStepper from "./MobileStepper";
 import {VerificationStep} from "../../../../types/data-types";
@@ -31,13 +31,15 @@ const InjiStepper = () => {
     const activeStep = getActiveStep();
 
     return (
-        <Box style={{marginTop: '30px'}}>
-            {
-                isDesktop
-                    ? (<DesktopStepper steps={steps} activeStep={activeStep}/>)
-                    : (<MobileStepper steps={steps} activeStep={activeStep}/>)
-            }
-        </Box>
+        <Grid container justifyContent="center" style={{marginTop: '20px',marginBottom: '20px'}}>
+            <Grid item xs={12} sm={10} md={8} lg={6}>
+                {
+                    isDesktop
+                        ? (<DesktopStepper steps={steps} activeStep={activeStep}/>)
+                        : (<MobileStepper steps={steps} activeStep={activeStep}/>)
+                }
+            </Grid>
+        </Grid>
     );
 }
 

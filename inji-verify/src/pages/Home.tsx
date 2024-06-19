@@ -1,8 +1,10 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
-import {Grid} from "@mui/material";
+import {Grid,useMediaQuery} from "@mui/material";
 import VerificationProgressTracker from "../components/Home/VerificationProgressTracker";
 import VerificationSection from "../components/Home/VerificationSection";
 import Copyrights from "../components/Home/VerificationProgressTracker/Copyrights";
+import StepperContentHeader from "../components/Home/VerificationProgressTracker/StepperContentHeader";
+
 import {VerificationSteps} from "../utils/config";
 import {AlertInfo} from "../types/data-types";
 import AlertMessage from "../components/commons/AlertMessage";
@@ -24,6 +26,8 @@ export const useAlertMessages = () => useContext(AlertsContext);
 function Home(props: any) {
     const [activeStep, setActiveStep] = useState(VerificationSteps.ScanQrCodePrompt);
     const getActiveStep = () => activeStep;
+    const isMobile = useMediaQuery('(max-width:767px)');
+    const isDesktop = useMediaQuery('(min-width:768px)');
 
     const [alertInfo, setAlertInfo] = useState({
         open: false,
@@ -34,17 +38,41 @@ function Home(props: any) {
     return (
         <AlertsContext.Provider value={{alertInfo, setAlertInfo}}>
             <ActiveStepContext.Provider value={{getActiveStep, setActiveStep}}>
-                <Grid container>
-                    <Grid item xs={12} md={6} style={{
-                        background: '#FAFBFD 0 0 no-repeat padding-box'
-                    }}>
-                        <VerificationProgressTracker/>
+            {isMobile ? (
+                    // Mobile layout
+                    <Grid container spacing={1}>
+                        <Grid item xs={12}>
+                            <StepperContentHeader />
+                        </Grid>
+                        
+                        <Grid item xs={12}>
+                            <VerificationSection />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <VerificationProgressTracker />
+                        </Grid>
+                        <Copyrights/>
                     </Grid>
-                    <Grid item xs={12} md={6}>
-                        <VerificationSection/>
+                ) : (
+                    // Desktop layout
+                    <Grid container spacing={3}>
+                        <Grid item xs={12} md={6}>
+                            <Grid container spacing={3}>
+                                <Grid item xs={12}>
+                                    <StepperContentHeader />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <VerificationProgressTracker />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <VerificationSection />
+                        </Grid>
+                        <Copyrights/>
                     </Grid>
-                </Grid>
-                <Copyrights/>
+                )}
+              
                 <AlertMessage alertInfo={alertInfo} handleClose={() => {setAlertInfo({...alertInfo, open: false})}}/>
             </ActiveStepContext.Provider>
         </AlertsContext.Provider>

@@ -21,17 +21,25 @@ export const StepperIconContainer = styled('div')(({ ownerState }: {
     font: 'normal normal 600 12px/15px Inter'
 }));
 
+
+
+
+
+
 export const StepLabelContent = styled(Typography)`
-    font: normal normal bold 16px/20px Inter;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Inter;
 `;
 
 export const StepContentContainer = styled(StepContent)`
-    border-color: #FF7F00;
-    padding-bottom: 30px;
-    display: block
-`
+    border-left: 2px solid #FF7F00;
+    padding-left: 20px;
+`;
 
-export const StepContentDescription = styled(Typography)`
-    font: normal normal normal 14px/19px Inter;
+export const StepContentDescription = styled.div`
+    font-size: 14px;
+    line-height: 19px;
     color: #535353;
-`
+`;
+
